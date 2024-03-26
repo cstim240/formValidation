@@ -10,20 +10,20 @@ email.addEventListener("input", (event) => {
         emailError.textContent = "";
         emailError.className = "error"; //reset visual state of the message
     } else {
-        showError();
+        showEmailError();
     }
 });
 
 //if the email is valid we let the form submit
 form.addEventListener("submit", (event) => {
     if (!email.validity.valid){
-        showError();
+        showEmailError();
         event.preventDefault(); 
         //prevent the form from being sent by cancelling the event
     }
 });
 
-function showError(){
+function showEmailError(){
     if (email.validity.valueMissing){
         //if the field is empty, display the following error message
         emailError.textContent = "You need to enter an email address!";
@@ -38,7 +38,27 @@ function showError(){
     emailError.className = "error active";
 }
 
+//Zip code related validation
+const zipCode = document.getElementById("zipInput");
+const zipError = document.querySelector(".zipError");
+
+zipCode.addEventListener("input", () =>{
+    const zipRegex = /^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d/; //regex format for letter(l)-#-l #-l-#
+    const zipValue = zipCode.value.trim();
+
+    //the .test(string) is provided by JS's regexp object, used to test
+    //whether a string matches a regular expression pattern
+    if (zipRegex.test(zipValue)){
+        zipError.textContent = "";
+        zipError.classList.remove("error", "active");
+    } else {
+        zipError.textContent = "Invalid ZIP code, use the format[NO SPACE]: letter-num-letter-num-letter-num";
+        zipError.classList.add("error", "active");
+    }
+});
+
 //Country related functions
+//the code property allows a unique identifier associcated with each country
 const countries = [
     { code: "ca", name: "Canada"},
     { code: "us", name: "United States"},
@@ -55,3 +75,5 @@ countries.forEach(country => {
     option.textContent = country.name;
     countrySelect.appendChild(option);
 });
+
+
