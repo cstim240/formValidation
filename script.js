@@ -38,6 +38,25 @@ function showEmailError(){
     emailError.className = "error active";
 }
 
+//Country related functions
+//the code property allows a unique identifier associcated with each country, allows more efficiency with just 2 letters
+const countries = [
+    { code: "ca", name: "Canada"},
+    { code: "us", name: "United States"},
+    { code: "fr", name: "France"},
+    { code: "de", name: "Germany"}
+];
+
+const countrySelect = document.getElementById("countryInput");
+
+//loop through countries array and create options
+countries.forEach(country => {
+    const option = document.createElement("option");
+    option.value = country.code;
+    option.textContent = country.name;
+    countrySelect.appendChild(option);
+});
+
 //Zip code related validation
 const zipCode = document.getElementById("zipInput");
 const zipError = document.querySelector(".zipError");
@@ -86,25 +105,19 @@ password.addEventListener("input", ()=> {
 //confirm password validation
 const confirmPassword = document.getElementById("confirmPass");
 const confirmError = document.querySelector(".confirmError");
-//to do
 
-//Country related functions
-//the code property allows a unique identifier associcated with each country
-const countries = [
-    { code: "ca", name: "Canada"},
-    { code: "us", name: "United States"},
-    { code: "fr", name: "France"},
-    { code: "de", name: "Germany"}
-];
+confirmPassword.addEventListener("input", ()=>{
+    const confirmVal = confirmPassword.value;
+    const passwordVal = document.getElementById("password").value;
 
-const countrySelect = document.getElementById("countryInput");
-
-//loop through countries array and create options
-countries.forEach(country => {
-    const option = document.createElement("option");
-    option.value = country.code;
-    option.textContent = country.name;
-    countrySelect.appendChild(option);
+    if (confirmVal != passwordVal){
+        confirmError.textContent = "Passwords do not match!";
+        confirmError.classList.add("error","active");
+    } else {
+        confirmError.textContent = "";
+        confirmError.classList.remove("error","active");        
+    }
 });
 
+//submit button indicating which fields haven't been filled yet
 
