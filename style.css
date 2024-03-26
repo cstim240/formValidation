@@ -40,3 +40,13 @@ input[type="password"]{
 .error.active {
     padding: 0.3em;
 }
+
+.success {
+    width: 100%;
+    padding: 0;
+    font-size: 90%;
+    color: white;
+    background-color: limegreen;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+}

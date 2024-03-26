@@ -14,15 +14,6 @@ email.addEventListener("input", (event) => {
     }
 });
 
-//if the email is valid we let the form submit
-form.addEventListener("submit", (event) => {
-    if (!email.validity.valid){
-        //showEmailError();
-        event.preventDefault(); 
-        //prevent the form from being sent by cancelling the event
-    }
-});
-
 function showEmailError(){
     if (email.validity.valueMissing){
         //if the field is empty, display the following error message
@@ -119,5 +110,61 @@ confirmPassword.addEventListener("input", ()=>{
     }
 });
 
-//submit button indicating which fields haven't been filled yet
+let hasEmptyField = false;
+let errorDisplay = false;
+let successDisplay = false;
 
+//submit button indicating which fields haven't been filled yet
+//if the email is valid we let the form submit
+form.addEventListener("submit", (event) => {
+    const inputs = form.querySelectorAll("input");
+
+    //for each loop to go to each input field within the form element
+    inputs.forEach(input => {
+        if (input.value.trim() === "" && !errorDisplay){
+            const errorMsg = document.createElement("span");
+            errorMsg.textContent = "This field is required";
+            errorMsg.classList.add("error", "active", "emptyField");
+
+            const parent = input.parentNode; //the parent node in this case is p
+            parent.appendChild(errorMsg);
+
+            hasEmptyField = true;
+            errorDisplay = true;
+        } 
+    });
+
+    if (hasEmptyField){
+        event.preventDefault(); //prevent form submission
+    } else {
+        //remove empty field error messages
+        if (errorDisplay){
+            inputs.forEach(input => {
+                if (input.value.trim() === ""){
+                    const parent = input.parentNode; //the parent node in this case is p
+                    const errorMsg = document.querySelectorAll(".emptyField");
+                    if (errorMsg) {
+                        parent.removeChild(errorMsg);
+                    }
+                }
+            });
+        }
+        event.preventDefault();
+
+        if (!successDisplay){
+            const successMsg = document.createElement("p");
+            successMsg.textContent = "Submission was successful";
+            successMsg.classList.add("success");
+            form.appendChild(successMsg);
+            successDisplay = true;
+            errorDisplay = false;
+        }
+        
+    }
+
+    /*if (!email.validity.valid){
+        //showEmailError();
+        event.preventDefault(); 
+        //prevent the form from being sent by cancelling the event
+    }*/
+});
