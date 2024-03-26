@@ -110,45 +110,30 @@ confirmPassword.addEventListener("input", ()=>{
     }
 });
 
-let hasEmptyField = false;
-let errorDisplay = false;
 let successDisplay = false;
-
 //submit button indicating which fields haven't been filled yet
 //if the email is valid we let the form submit
 form.addEventListener("submit", (event) => {
     const inputs = form.querySelectorAll("input");
+    let hasEmptyField = false;
 
     //for each loop to go to each input field within the form element
     inputs.forEach(input => {
-        if (input.value.trim() === "" && !errorDisplay){
+        if (input.value.trim() === ""){
             const errorMsg = document.createElement("span");
             errorMsg.textContent = "This field is required";
             errorMsg.classList.add("error", "active", "emptyField");
 
             const parent = input.parentNode; //the parent node in this case is p
             parent.appendChild(errorMsg);
-
             hasEmptyField = true;
-            errorDisplay = true;
-        } 
-    });
+        }
+    }); 
 
     if (hasEmptyField){
         event.preventDefault(); //prevent form submission
     } else {
-        //remove empty field error messages
-        if (errorDisplay){
-            inputs.forEach(input => {
-                if (input.value.trim() === ""){
-                    const parent = input.parentNode; //the parent node in this case is p
-                    const errorMsg = document.querySelectorAll(".emptyField");
-                    if (errorMsg) {
-                        parent.removeChild(errorMsg);
-                    }
-                }
-            });
-        }
+        
         event.preventDefault();
 
         if (!successDisplay){
