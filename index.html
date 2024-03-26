@@ -10,21 +10,33 @@
     <!--Add novalidate and implement from: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript -->
     <!--novalidate attribute turns off the browser's auto validation, lets our script take control over validation-->
     <form class="form" novalidate>
-        <label for="emailInput">Email: </label>
-        <input type="email" id="emailInput" required minlength="8"/>
-        <span class="mailError" aria-live="polite"></span>
+        <p>
+            <label for="emailInput">Email: </label>
+            <input type="email" id="emailInput" required minlength="8"/>
+            <span class="mailError" aria-live="polite"></span>
+        </p>
 
-        <label>Country: </label>
-        <input type="text" />
+        <p>
+            <label>Country: </label>
+            <input type="text" />           
+        </p>
 
-        <label>Zip Code: </label>
-        <input type="text" />
+        <p>
+            <label>Zip Code: </label>
+            <input type="text" />
+        </p>
 
-        <label>Password: </label>
-        <input type="text"/>
+        <p>
+            <label>Password: </label>
+            <input type="text"/>
+        </p>
 
-        <label>Confirm Password: </label> 
-        <input type="text" />
+        <p>
+            <label>Confirm Password: </label> 
+            <input type="text" />
+        </p>
+
+
 
         <span class="errorMsgOutput"></span>
         <button class="submitBtn">Submit</button>
