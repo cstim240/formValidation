@@ -8,3 +8,5 @@ Features:
 - Submission message upon successful input entries.
 
 ![image](https://github.com/cstim240/formValidation/assets/75660907/c4716566-58e9-4fe8-8841-1058b37cf4e5)
+
+Live link: https://cstim240.github.io/formValidation/
