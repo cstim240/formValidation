@@ -8,9 +8,11 @@
 </head>
 <body>
     <!--Add novalidate and implement from: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript -->
-    <form>
+    <!--novalidate attribute turns off the browser's auto validation, lets our script take control over validation-->
+    <form class="form" novalidate>
         <label>Email: </label>
-        <input type="email" class="emailInput"/>
+        <input type="email" class="emailInput" required minlength="8"/>
+        <span class="mailError" aria-live="polite"></span>
 
         <label>Country: </label>
         <input type="text" />
