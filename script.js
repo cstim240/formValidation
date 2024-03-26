@@ -1,5 +1,5 @@
 const form = document.querySelector(".form");
-const email = document.querySelector(".emailInput");
+const email = document.getElementById("emailInput");
 const emailError = document.querySelector(".mailError");
 
 email.addEventListener("input", (event) => {
@@ -35,11 +35,3 @@ function showError(){
     //set the styling appropriately
     emailError.className = "error active";
 }
-/*const email = document.querySelector("emailInput");
-email.addEventListener("input", (event) => {
-    if (email.validity.typeMismatch){
-        email.setCustomValidity("I am expecting an email address!");
-    } else {
-        
-    }
-});*/
