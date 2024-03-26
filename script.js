@@ -17,7 +17,7 @@ email.addEventListener("input", (event) => {
 //if the email is valid we let the form submit
 form.addEventListener("submit", (event) => {
     if (!email.validity.valid){
-        showEmailError();
+        //showEmailError();
         event.preventDefault(); 
         //prevent the form from being sent by cancelling the event
     }
@@ -82,6 +82,11 @@ password.addEventListener("input", ()=> {
         passwordError.classList.remove("error", "active");
     }
 });
+
+//confirm password validation
+const confirmPassword = document.getElementById("confirmPass");
+const confirmError = document.querySelector(".confirmError");
+//to do
 
 //Country related functions
 //the code property allows a unique identifier associcated with each country
