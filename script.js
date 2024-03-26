@@ -44,7 +44,7 @@ const zipError = document.querySelector(".zipError");
 
 zipCode.addEventListener("input", () =>{
     const zipRegex = /^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d/; //regex format for letter(l)-#-l #-l-#
-    const zipValue = zipCode.value.trim();
+    const zipValue = zipCode.value.trim(); //trim removes the trailing whitespaces
 
     //the .test(string) is provided by JS's regexp object, used to test
     //whether a string matches a regular expression pattern
@@ -54,6 +54,32 @@ zipCode.addEventListener("input", () =>{
     } else {
         zipError.textContent = "Invalid ZIP code, use the format[NO SPACE]: letter-num-letter-num-letter-num";
         zipError.classList.add("error", "active");
+    }
+});
+
+//Password validation: first we compare it to minlength and having certain number of #'s, then compare confpass to password
+const password = document.getElementById("password");
+const passwordError = document.querySelector(".passwordError");
+
+password.addEventListener("input", ()=> {
+    const passwordVal = password.value.trim();
+    //the '/g' flag means global and it finds all matches of numbers
+    //the empty bracket ensures that null won't be returned if passwordVal is empty
+    const numDigits = (passwordVal.match(/\d/g) || []).length; 
+    const numLetters = (passwordVal.match(/[a-zA-Z]/g) || []).length;
+
+    if (passwordVal.length < 7 ) {
+        passwordError.textContent = "Password must be at least 7 characters long.";
+        passwordError.classList.add("error", "active");
+    } else if (numDigits < 2) {
+        passwordError.textContent += "\nPassword must have at least 2 numbers.";
+        passwordError.classList.add("error", "active");
+    } else if (numLetters < 1) {
+        passwordError.textContent = "Password must contain at least 1 letter.";
+        passwordError.classList.add("error", "active");
+    } else {
+        passwordError.textContent = "";
+        passwordError.classList.remove("error", "active");
     }
 });
 
