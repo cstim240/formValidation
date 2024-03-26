@@ -29,7 +29,7 @@ function showError(){
         //if the field doesn't contain an email address
         emailError.textContent = "Entered value needs to be an email address";
     } else if (email.validity.tooShort) {
-        email.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`;
+        emailError.textContent = `Email should be at least ${email.getAttribute('minlength')} characters; you entered ${email.value.length}.`;
     }
 
     //set the styling appropriately
