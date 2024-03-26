@@ -1,4 +1,6 @@
 const form = document.querySelector(".form");
+
+//Email related functions and vars
 const email = document.getElementById("emailInput");
 const emailError = document.querySelector(".mailError");
 
@@ -35,3 +37,21 @@ function showError(){
     //set the styling appropriately
     emailError.className = "error active";
 }
+
+//Country related functions
+const countries = [
+    { code: "ca", name: "Canada"},
+    { code: "us", name: "United States"},
+    { code: "fr", name: "France"},
+    { code: "de", name: "Germany"}
+];
+
+const countrySelect = document.getElementById("countryInput");
+
+//loop through countries array and create options
+countries.forEach(country => {
+    const option = document.createElement("option");
+    option.value = country.code;
+    option.textContent = country.name;
+    countrySelect.appendChild(option);
+});
